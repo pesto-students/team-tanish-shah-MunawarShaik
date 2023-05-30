@@ -2,7 +2,7 @@
 .container {
   font-family: "Roboto";
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   margin: 5px;
   align-items: center;
@@ -18,4 +18,41 @@
   width: 400px;
   margin: 4px;
   text-align: center;
+  border: 1px solid #cccccc;
+}
+.offerTitle {
+  font: 14px bold;
+  color: #ffffff;
+  background: #00b3b3;
+  margin: 0;
+  padding: 15px;
+}
+.offerContents {
+  padding: 20px;
+  background-color: #fafafa;
+}
+table {
+  width: 100%;
+  background-color: #ffffff;
+  border-spacing: 0;
+}
+th {
+  font: 12px bold;
+  color: #777777;
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+  border: 1px solid #f1f1f1;
+}
+td {
+  font-weight: lighter;
+  color: #444444;
+  padding: 20px 10px;
+  margin: 0;
+  text-align: left;
+  border: 1px solid #f1f1f1;
+}
+.finalValue {
+  font-weight: bold;
+  color: #2222ff;
 }
