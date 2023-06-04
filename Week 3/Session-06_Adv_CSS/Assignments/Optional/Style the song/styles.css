@@ -1,11 +1,31 @@
 p:nth-child(5) {
-   background: revert;
-   box-shadow: revert;
-   padding: revert;
+  background: revert;
+  box-shadow: revert;
+  padding: revert;
 }
 
 a {
-   font-size: 12px;
+  font-size: 12px;
 }
 
 /* Add styles here */
+body {
+  font-family: Arial;
+  width: 100vw;
+  height: 100vh;
+  background-image: radial-gradient(circle, white, lightgray);
+}
+h1 {
+  color: darkblue;
+  padding: 8px;
+  text-shadow: gray 5px 5px 6px;
+}
+p {
+  color: white;
+  width: 350px;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: gray 5px 5px 6px;
+  background-image: linear-gradient(to bottom right, darkblue, skyblue);
+}
