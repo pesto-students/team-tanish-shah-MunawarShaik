@@ -1,36 +1,36 @@
-// Your solution goes here
+function playGuessingGame(numToGuess, totalGuesses = 10) {
+  numToGuess = Math.floor(Math.random() * 100) + 1;
+  console.log(numToGuess);
+  let number = prompt("Enter a number between 1 to 100.");
 
-const playGuessingGame = () => {
-  const randomNumber = Math.floor(Math.random() * 100) + 1;
-  console.log(randomNumber);
-  let attempts = 0;
-  let guessedNumber = parseInt(prompt("Enter a Number between 1 to 100"));
-  console.log(typeof guessedNumber);
-  console.log(guessedNumber.trim());
-  while (attempts < 10 || guessedNumber !== randomNumber) {
-    if (guessedNumber === null) {
-      return 0;
-    }
+  // player click on cancel button
+  if (number === null) return 0;
 
-    if (isNaN(guessedNumber)) {
-      prompt("please enter a number");
-      continue;
-    }
+  // player enter empty value or value that is not a number
+  if (isNaN(number) || number === "")
+    playGuessingGame(numToGuess, totalGuesses);
 
-    if (guessedNumber == randomNumber) {
-      attempts++;
-      return attempts;
-    } else if (guessedNumber < randomNumber) {
-      guessedNumber = prompt(
-        guessedNumber + "is too small.Guess a larger number"
-      );
-      attempts++;
-    } else if (guessedNumber > randomNumber) {
-      guessedNumber = prompt(
-        guessedNumber + "is too Large.Guess a smaller number"
-      );
-      attempts++;
+  let count = 1;
+
+  for (let i = count; i < totalGuesses; i++) {
+    // player click on cancel button
+    if (number === null) return 0;
+
+    // player enter empty value or value that is not number
+    if (isNaN(number) || number === "") {
+      number = prompt("Please enter a number.");
+      i--;
     }
+    // guessed number < numToGuess
+    else if (number < numToGuess)
+      number = prompt(`${number} is too small. Guess a larger number.`);
+    // guessed number > numToGuess
+    else if (number > numToGuess)
+      number = prompt(`${number} is too large. Guess a smaller number`);
+    // guessed the number
+    else return i;
   }
-  return attempts;
-};
+
+  return 0;
+}
+// playGuessingGame();
