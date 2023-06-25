@@ -72,35 +72,67 @@ class BankAccount {
     this.#balance = balance;
     this.#accountHolderName = accountHolderName;
   }
+  getBalance() {
+    return this.#balance;
+  }
+  setBalance(amount) {
+    this.#balance = amount;
+  }
 }
 class CheckingAccount extends BankAccount {
   deposit(amount) {
-    this.#balance += amount;
+    let balance = this.getBalance();
+    balance += amount;
+    this.setBalance(balance);
+    console.log(
+      "Amount of -> " +
+        amount +
+        " was deposited, updated balance is -> " +
+        this.getBalance()
+    );
   }
   withdraw(amount) {
-    this.#balance -= amount;
-  }
-  getBalance() {
-    return this.#balance;
+    let balance = this.getBalance();
+    balance -= amount;
+    this.setBalance(balance);
   }
 }
 class SavingsAccount extends BankAccount {
   deposit(amount) {
-    this.#balance += amount;
+    let balance = this.getBalance();
+    balance += amount;
+    this.setBalance(balance);
+    console.log(
+      "Amount of -> " +
+        amount +
+        " was deposited, updated balance is -> " +
+        this.getBalance()
+    );
   }
   withdraw(amount) {
-    if (this.#balance > 0) {
-      this.#balance -= amount;
+    let balance = this.getBalance();
+    if (balance >= amount) {
+      balance -= amount;
+      this.setBalance(balance);
+      console.log(
+        "Amount of " +
+          amount +
+          " was withdrawn. Updated balance is " +
+          this.getBalance()
+      );
     } else {
-      console.log("No Funds");
+      console.log("Insufficient balance");
     }
-  }
-  getBalance() {
-    return this.#balance;
   }
 }
 
-const instanceCheckingAccount = new CheckingAccount();
-const instanceSavingAccount = new SavingsAccount();
-console.log(instanceCheckingAccount);
-console.log(instanceSavingAccount);
+const check = new CheckingAccount(1111, 1000, "Bruce");
+const save = new SavingsAccount(2222, 100, "Tony");
+
+check.withdraw(350); //Amount of 350 was withdrawn. Updated balance is 650
+check.deposit(500); //Amount of -> 500 was deposited, updated balance is -> 1150
+console.log("Current balance is -> " + check.getBalance()); //Current balance is -> 1150
+
+save.withdraw(350); //Insufficient balance
+save.deposit(500); //Amount of -> 500 was deposited, updated balance is -> 600
+console.log("Current balance is -> " + save.getBalance()); //Current balance is -> 600
