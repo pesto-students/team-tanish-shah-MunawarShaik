@@ -1,9 +1,9 @@
 // Maps and sets
 let productViews = new WeakMap();
-let cartItems = new Set();
-
+let cartItems = new WeakSet();
+let productKey = {};
 function incrementProductViews(productId) {
-  const productKey = { id: productId };
+  productKey = { id: productId };
 
   if (productViews.has(productKey)) {
     const viewCount = productViews.get(productKey);
@@ -14,13 +14,13 @@ function incrementProductViews(productId) {
 }
 
 function addToCart(productId) {
-  const productKey = { id: productId };
-  const keyString = JSON.stringify(productKey);
+  productKey = { id: productId };
+  //const keyString = JSON.stringify(productKey);
 
-  if (cartItems.has(keyString)) {
+  if (cartItems.has(productKey)) {
     return "Product already in cart";
   } else {
-    cartItems.add(keyString);
+    cartItems.add(productKey);
     return "Product added to cart";
   }
 }
