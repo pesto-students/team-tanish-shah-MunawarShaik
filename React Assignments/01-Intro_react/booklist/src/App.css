@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+  background: #72b593;
+  height: 100vh;
+  width: 100vw;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainHeading {
+  color: #3340a2;
+}
+.list {
+  text-align: left;
+  display: flex;
+  align-content: center;
+  background: #d9e3f0;
+}
+.listItem {
+  list-style-type: none;
+  /* background: #000; */
+  text-align: left;
+}
+.heading {
+  font-size: medium;
+  color: rgb(120, 18, 245);
+}
