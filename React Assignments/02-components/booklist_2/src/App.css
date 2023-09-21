@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+  background: #72b593;
+  height: 100%;
+  width: 100vw;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mainHeading {
+  color: #3340a2;
+}
+.list {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.listItem {
+  background: #d9e3f0;
+  list-style-type: none;
+  /* background: #000; */
+  text-align: center;
+  margin: 6px;
+  border: solid 1px black;
+  height: 160px;
+  width: 400px;
+}
+.heading {
+  font-size: medium;
+  color: rgb(120, 18, 245);
+}
