@@ -1,0 +1,8 @@
+.app {
+  display: flex;
+  background: linear-gradient(to right, #8e9eab, #eef2f3);
+  width: 100vw;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
