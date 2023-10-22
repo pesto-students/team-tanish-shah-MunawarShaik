@@ -142,3 +142,10 @@ c. Wait-Die and Wound-Wait
 d. Deadlock Detection and
 
 ## Question 7: Read about Database sharding and explain couple of real time examples where, why, how it this concept is used.
+
+Database sharding is a technique used in database management to improve performance and scalability by distributing data across multiple servers or databases. It involves breaking a large database into smaller, more manageable parts called shards, which can be stored on separate hardware or database instances
+
+1. Social Media Platforms:
+   Example: Facebook
+2. E-commerce Platforms:
+   Example: Amazon
