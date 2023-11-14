@@ -1,0 +1,175 @@
+// 1. Create a new database named "MovieDB" in MongoDB.
+use MovieDB 
+
+//2. Create three collections named "movies," "directors," and "actors."
+db.createCollection("movies")
+db.createCollection("directors")
+db.createCollection("actors") 
+
+// 3. Design the appropriate schema for each collection and insert sample data into each collection.
+// 4. The "movies" collection should include at least 10 movie documents with relevant details (e.g., title, release year, genre, director, and actors).
+
+db.movies.insertMany(
+ [
+  {
+    "title": "Inception",
+    "releaseYear": 2010,
+    "genre": "Science Fiction",
+    "director": "Christopher Nolan",
+    "actors": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Ellen Page"]
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "releaseYear": 1994,
+    "genre": "Drama",
+    "director": "Frank Darabont",
+    "actors": ["Tim Robbins", "Morgan Freeman"]
+  },
+  {
+    "title": "The Dark Knight",
+    "releaseYear": 2008,
+    "genre": "Action",
+    "director": "Christopher Nolan",
+    "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"]
+  },
+  {
+    "title": "Pulp Fiction",
+    "releaseYear": 1994,
+    "genre": "Crime",
+    "director": "Quentin Tarantino",
+    "actors": ["John Travolta", "Samuel L. Jackson", "Uma Thurman"]
+  },
+  {
+    "title": "Forrest Gump",
+    "releaseYear": 1994,
+    "genre": "Drama",
+    "director": "Robert Zemeckis",
+    "actors": ["Tom Hanks", "Robin Wright", "Gary Sinise"]
+  },
+  {
+    "title": "Avatar",
+    "releaseYear": 2009,
+    "genre": "Action",
+    "director": "James Cameron",
+    "actors": ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"]
+  },
+  {
+    "title": "The Godfather",
+    "releaseYear": 1972,
+    "genre": "Crime",
+    "director": "Francis Ford Coppola",
+    "actors": ["Marlon Brando", "Al Pacino", "James Caan"]
+  },
+  {
+    "title": "The Matrix",
+    "releaseYear": 1999,
+    "genre": "Action",
+    "director": "Lana and Lilly Wachowski",
+    "actors": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"]
+  },
+  {
+    "title": "Interstellar",
+    "releaseYear": 2014,
+    "genre": "Science Fiction",
+    "director": "Christopher Nolan",
+    "actors": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"]
+  },
+  {
+    "title": "Fight Club",
+    "releaseYear": 1999,
+    "genre": "Drama",
+    "director": "David Fincher",
+    "actors": ["Brad Pitt", "Edward Norton", "Helena Bonham Carter"]
+  }
+])
+
+// 5. The "directors" collection should include at least 5 director documents with relevant details (e.g., name, nationality, and movies directed).
+
+db.directors.insertMany{[
+  {
+    "name": "Christopher Nolan",
+    "nationality": "British",
+    "moviesDirected": ["Inception", "The Dark Knight", "Interstellar"]
+  },
+  {
+    "name": "Quentin Tarantino",
+    "nationality": "American",
+    "moviesDirected": ["Pulp Fiction", "Kill Bill", "Django Unchained"]
+  },
+  {
+    "name": "James Cameron",
+    "nationality": "Canadian",
+    "moviesDirected": ["Avatar", "Titanic", "The Terminator"]
+  },
+  {
+    "name": "Francis Ford Coppola",
+    "nationality": "American",
+    "moviesDirected": ["The Godfather", "Apocalypse Now", "The Conversation"]
+  },
+  {
+    "name": "Robert Zemeckis",
+    "nationality": "American",
+    "moviesDirected": ["Forrest Gump", "Back to the Future", "Cast Away"]
+  }
+]
+}
+
+// 6. The "actors" collection should include at least 8 actor documents with relevant details (e.g., name, nationality, and movies acted in).
+db.actors.insertMany{[
+  {
+    "name": "Leonardo DiCaprio",
+    "nationality": "American",
+    "moviesActedIn": ["Inception", "The Revenant", "Titanic"]
+  },
+  {
+    "name": "Samuel L. Jackson",
+    "nationality": "American",
+    "moviesActedIn": ["Pulp Fiction", "Django Unchained", "The Hateful Eight"]
+  },
+  {
+    "name": "Tom Hanks",
+    "nationality": "American",
+    "moviesActedIn": ["Forrest Gump", "Cast Away", "Saving Private Ryan"]
+  },
+  {
+    "name": "Scarlett Johansson",
+    "nationality": "American",
+    "moviesActedIn": ["The Avengers", "Lost in Translation", "Marriage Story"]
+  },
+  {
+    "name": "Keanu Reeves",
+    "nationality": "Canadian",
+    "moviesActedIn": ["The Matrix", "John Wick", "Speed"]
+  },
+  {
+    "name": "Meryl Streep",
+    "nationality": "American",
+    "moviesActedIn": ["The Devil Wears Prada", "Sophie's Choice", "Mamma Mia!"]
+  },
+  {
+    "name": "Chris Hemsworth",
+    "nationality": "Australian",
+    "moviesActedIn": ["Thor", "The Avengers", "Rush"]
+  },
+  {
+    "name": "Joaquin Phoenix",
+    "nationality": "American",
+    "moviesActedIn": ["Joker", "Walk the Line", "Her"]
+  }
+]
+}
+
+// 7. Implement appropriate relationships between the collections. 
+// For example, each movie should have a reference to its director and a list of 
+// actor references. Each director should have a list of movie references they directed. 
+// Each actor should have a list of movie references they acted in.
+
+// Update "movies" collection to include references to directors and actors:
+db.movies.updateMany({}, { $set: { director: { $ref: "directors", $id: "$director" }, actors: { $each: [{ $ref: "actors", $id: "$actors" }] } } })
+
+// Update "directors" collection to include references to movies directed:
+db.directors.updateMany({}, { $set: { moviesDirected: { $each: [{ $ref: "movies", $id: "$moviesDirected" }] } } })
+
+//Update "actors" collection to include references to movies acted in:
+db.actors.updateMany({}, { $set: { moviesActedIn: { $each: [{ $ref: "movies", $id: "$moviesActedIn" }] } } })
+
