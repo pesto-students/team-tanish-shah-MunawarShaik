@@ -1,0 +1,32 @@
+/* src/components/Home.css */
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  height: 100vh;
+}
+
+.profile-picture img {
+  width: 200px;
+  height: 180px;
+  border-radius: 50%;
+}
+
+.introduction {
+  text-align: center;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+.introduction h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.introduction p {
+  font-size: 16px;
+  color: #555;
+}
